@@ -87,18 +87,21 @@ order, de-duplicated). See [fixtures/citation_golden.json](fixtures/citation_gol
 - `rag_embeddings.f16`: raw IEEE-754 binary16, little-endian, row-major, `count × dim`, **no header**.
   Row `i` ↔ `embedding_rows.row = i` ↔ `chunk_id`. `count`/`dim` come from `content_meta`.
 - Memory vectors in `user.sqlite` are Float32 little-endian blobs (same truncation/normalisation).
-- On device, EmbeddingGemma runs as a GGUF through llama.cpp (mean pooling as stored in the GGUF metadata);
+- On device, EmbeddingGemma runs as a GGUF through llama.cpp. It must be converted with
+  `--sentence-transformers-dense-modules` so the GGUF includes the two Dense projection layers that follow mean
+  pooling; otherwise query vectors will not match the document vectors built with sentence-transformers;
   the app applies the prompts above itself because llama.cpp does not add them.
 
 ## 3. Retrieval
 
 1. **Explicit reference** — if the query contains a parseable reference (`Matthew 18:22`, `Mt 18`, `1 Cor 13:4-7`),
-   look up scripture chunks overlapping it (book_index, chapter range, verse range). These form ranked list R.
+   look up **scripture** chunks overlapping it (book_index, chapter range, verse range). These form ranked list R,
+   ordered by the reference's position in the query, then by chunk position (book, chapter, verse_start). No cap.
 2. **Semantic** — query embedding · all document rows, top 30 → list V.
 3. **Lexical** — FTS5 BM25, top 30 → list L:
    ```sql
    SELECT rowid, bm25(chunks_fts, 2.0, 3.0, 1.0) AS score
-   FROM chunks_fts WHERE chunks_fts MATCH ? ORDER BY score LIMIT 30;
+   FROM chunks_fts WHERE chunks_fts MATCH ? ORDER BY score, rowid LIMIT 30;
    ```
    FTS query construction: lowercase; extract tokens matching `[\p{L}\p{N}]+`; drop tokens in
    [stopwords.txt](stopwords.txt) and tokens of length < 2; de-duplicate keeping first occurrence; wrap each in
@@ -106,7 +109,10 @@ order, de-duplicated). See [fixtures/citation_golden.json](fixtures/citation_gol
 4. **Reciprocal rank fusion**, ranks are 1-based, k = 60:
    `score(d) = Σ_lists w_list / (k + rank_list(d))`, weights: R = 2.0, V = 1.0, L = 1.0.
    Ties broken by lower chunk_id. Keep top 6 (configurable), then trim to the sources token budget (2500 tokens,
-   `token_estimate`), always keeping at least 1.
+   `token_estimate`): walk in rank order and stop at the first chunk that would exceed the budget; always keep at
+   least the first chunk.
+
+Notes: semantic ties are broken by lower row index. FTS tokens are not Unicode-normalised beyond lowercasing.
 
 ## 4. Memory
 
