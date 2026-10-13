@@ -20,7 +20,7 @@ CREATE TABLE memories (
     updated_at        REAL NOT NULL,
     last_accessed_at  REAL,
     superseded        INTEGER NOT NULL DEFAULT 0,
-    superseded_by     TEXT REFERENCES memories(id)
+    superseded_by     TEXT REFERENCES memories(id) ON DELETE SET NULL
 );
 
 -- Consolidation invariant: at most one active memory per key.

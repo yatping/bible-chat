@@ -153,12 +153,13 @@ memories, minimum score 0.35 for non-preference items.
 | system | ~300 |
 | memory | ≤ 300 |
 | conversation summary | ≤ 300 |
-| recent messages | ≤ 1000 (last 8 messages, trimmed oldest-first to fit) |
+| recent messages | ≤ 1000 (messages not covered by the summary, at most 16, trimmed oldest-first to fit) |
 | sources | ≤ 2500 |
 | answer (max new tokens) | 1200 |
 
-Token estimate everywhere = `ceil(chars / 4)`. Summarise when a conversation has more than 16 messages not yet covered
-by the summary beyond the recent window.
+Token estimate everywhere = `ceil(chars / 4)`. Every message is either covered by the rolling summary or replayed.
+When more than 16 messages are not yet covered by the summary, fold all but the last 8 into it
+(`conversations.summary_message_count` records how many leading messages the summary covers).
 
 Generation defaults: temperature 0.3, top_p 0.9, top_k 40, repeat penalty 1.1. Memory extraction / summarisation:
 temperature 0.0, max 256 tokens.
