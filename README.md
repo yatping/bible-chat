@@ -36,7 +36,7 @@ ios/scripts/fetch_llama_xcframework.sh
 ios/scripts/bundle_content.sh
 cd ios && xcodegen generate && open BibleAI.xcodeproj
 
-# 3. Fine-tune on a GPU machine: see training/README.md
+# 3. Fine-tune: on a Mac, training/scripts/mlx_pipeline.sh (see training/README.md); CUDA path also documented
 ```
 
 ## Tests
@@ -54,9 +54,9 @@ model is fine-tuned on is therefore byte-identical to the one the app builds.
 
 | Verified here | Not yet verified |
 |---|---|
-| All test suites pass; the app builds for the iOS Simulator and device with the real llama.cpp XCFramework linked | QLoRA training, evaluation and GGUF conversion (needs a CUDA GPU) |
-| WEB content build: 31,098 verses, 3,791 chunks, FTS5, 117k cross references | Real EmbeddingGemma vectors (gated model: accept the licence and run `hf auth login`, then rebuild with `--embedder embeddinggemma`) |
-| Retrieval eval harness (66 labelled questions) | Inference on a physical iPhone (speed, memory, Gemma 4 chat template end-of-turn handling) |
+| All test suites pass; the app builds for the iOS Simulator and device with the real llama.cpp XCFramework linked | CUDA training path (`train_qlora.py`); the Mac/MLX path is the one that has been run |
+| WEB content build with real EmbeddingGemma vectors: 31,098 verses, 3,791 chunks; hybrid Recall@5 0.985, MRR 0.870 | Larger training set (55 hand-written seeds today) |
+| QLoRA on an M1 Pro (MLX) → merge → Q4_K_M GGUF (3.4 GB); on llama.cpp b11580 it refuses 7/7 unsupported questions with no unsupported citations ([details](training/README.md#training-on-a-mac-mlx)) | Inference on a physical iPhone (speed, memory) |
 
 Known limitations:
 
@@ -65,7 +65,7 @@ Known limitations:
 - **Placeholder model manifest.** `ios/BibleAI/Resources/ModelManifest.json` has example URLs and checksums.
   Fill them in from the conversion scripts' output before release.
 - **Different llama.cpp tags.** The conversion scripts pin llama.cpp `b11500` and the app runtime pins `b11580`.
-  A GGUF from the older converter should load in the newer runtime, but this hasn't been tested.
+  The `b11500` GGUF has been tested on a `b11580` llama-server, though not yet on a device.
 
 ## Licences of bundled content
 
