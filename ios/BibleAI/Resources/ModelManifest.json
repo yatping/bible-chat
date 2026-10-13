@@ -5,9 +5,9 @@
       "id": "bible-gemma-4-e2b-q4_k_m",
       "role": "generator",
       "filename": "bible-gemma-q4_k_m.gguf",
-      "url": "https://example.com/models/bible-gemma-q4_k_m.gguf",
-      "sha256": "<fill in from training/scripts/convert_gguf.sh output>",
-      "bytes": 0,
+      "url": "https://huggingface.co/patrick0617/bible-gemma-4-e2b-gguf/resolve/main/bible-gemma-q4_k_m.gguf",
+      "sha256": "d1867e10f3ebcd1006c83e7365ed9dc6961108ca3c9da7aa5c1d5d2464ec97a0",
+      "bytes": 3427880384,
       "context_length": 6144
     },
     {
