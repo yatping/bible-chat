@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "name": "all_valid",
+      "text": "Forgive without counting [S1]. The parable reinforces it [S2].",
+      "source_count": 3,
+      "expected_text": "Forgive without counting [S1]. The parable reinforces it [S2].",
+      "cited": [
+        "S1",
+        "S2"
+      ],
+      "removed": []
+    },
+    {
+      "name": "invalid_removed",
+      "text": "Jesus answered [S1] and later [S9] the parable [S2][S4].",
+      "source_count": 2,
+      "expected_text": "Jesus answered [S1] and later the parable [S2].",
+      "cited": [
+        "S1",
+        "S2"
+      ],
+      "removed": [
+        "S9",
+        "S4"
+      ]
+    },
+    {
+      "name": "normalise_lists",
+      "text": "See both passages [S1, S2] and [S2-S3].",
+      "source_count": 2,
+      "expected_text": "See both passages [S1][S2] and [S2].",
+      "cited": [
+        "S1",
+        "S2"
+      ],
+      "removed": [
+        "S3"
+      ]
+    },
+    {
+      "name": "no_sources",
+      "text": "The supplied sources do not cover this [S1].",
+      "source_count": 0,
+      "expected_text": "The supplied sources do not cover this.",
+      "cited": [],
+      "removed": [
+        "S1"
+      ]
+    }
+  ]
+}

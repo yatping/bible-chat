@@ -1,0 +1,110 @@
+{
+  "k": 60,
+  "cases": [
+    {
+      "name": "semantic_and_lexical_agree",
+      "lists": [
+        {
+          "name": "reference",
+          "weight": 2.0,
+          "ids": []
+        },
+        {
+          "name": "semantic",
+          "weight": 1.0,
+          "ids": [
+            14029,
+            15201,
+            13050,
+            900
+          ]
+        },
+        {
+          "name": "lexical",
+          "weight": 1.0,
+          "ids": [
+            14029,
+            22101,
+            4,
+            900
+          ]
+        }
+      ],
+      "top_k": 6,
+      "expected": [
+        14029,
+        900,
+        15201,
+        22101,
+        4,
+        13050
+      ]
+    },
+    {
+      "name": "reference_dominates",
+      "lists": [
+        {
+          "name": "reference",
+          "weight": 2.0,
+          "ids": [
+            14030
+          ]
+        },
+        {
+          "name": "semantic",
+          "weight": 1.0,
+          "ids": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "lexical",
+          "weight": 1.0,
+          "ids": [
+            2,
+            14030
+          ]
+        }
+      ],
+      "top_k": 3,
+      "expected": [
+        14030,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "tie_breaks_by_lower_id",
+      "lists": [
+        {
+          "name": "reference",
+          "weight": 2.0,
+          "ids": []
+        },
+        {
+          "name": "semantic",
+          "weight": 1.0,
+          "ids": [
+            50,
+            10
+          ]
+        },
+        {
+          "name": "lexical",
+          "weight": 1.0,
+          "ids": [
+            10,
+            50
+          ]
+        }
+      ],
+      "top_k": 6,
+      "expected": [
+        10,
+        50
+      ]
+    }
+  ]
+}

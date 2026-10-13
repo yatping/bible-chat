@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Build artifacts (large / regenerated)
+build/
+artifacts/
+*.gguf
+*.safetensors
+content/data/raw/
+training/outputs/
+
+# Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcodeproj/
+ios/Frameworks/*.xcframework
+
+# macOS
+.DS_Store

@@ -1,0 +1,11 @@
+You maintain a running summary of a Bible study conversation.
+
+Update PREVIOUS SUMMARY with the NEW MESSAGES. Keep: passages and topics discussed, the user's open questions,
+and how the user wants answers given. Drop greetings and repeated content.
+Write at most 120 words of plain prose. Return the summary only.
+
+PREVIOUS SUMMARY:
+{{previous_summary}}
+
+NEW MESSAGES:
+{{messages}}

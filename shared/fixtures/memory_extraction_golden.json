@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "name": "two_preferences",
+      "raw": "{\"memories\":[{\"type\":\"preference\",\"key\":\"bible_translation\",\"value\":\"Preferred Bible translation is WEB.\",\"importance\":0.8,\"confidence\":1.0},{\"type\":\"preference\",\"key\":\"answer_style\",\"value\":\"User prefers short historical explanations.\",\"importance\":0.7,\"confidence\":1.0}]}",
+      "expected": [
+        {
+          "type": "preference",
+          "key": "bible_translation",
+          "value": "Preferred Bible translation is WEB.",
+          "importance": 0.8,
+          "confidence": 1.0
+        },
+        {
+          "type": "preference",
+          "key": "answer_style",
+          "value": "User prefers short historical explanations.",
+          "importance": 0.7,
+          "confidence": 1.0
+        }
+      ]
+    },
+    {
+      "name": "code_fence_and_prose",
+      "raw": "Sure! Here is the JSON:\n```json\n{\"memories\":[{\"type\":\"study_interest\",\"key\":null,\"value\":\"  Studying Paul's treatment of grace in Romans. \",\"importance\":0.6}]}\n```",
+      "expected": [
+        {
+          "type": "study_interest",
+          "key": null,
+          "value": "Studying Paul's treatment of grace in Romans.",
+          "importance": 0.6,
+          "confidence": 1.0
+        }
+      ]
+    },
+    {
+      "name": "invalid_items_dropped_and_clamped",
+      "raw": "{\"memories\":[{\"type\":\"secret\",\"key\":null,\"value\":\"x\"},{\"type\":\"goal\",\"key\":\"favourite_food\",\"value\":\"Read the whole Bible this year.\",\"importance\":3,\"confidence\":0.9},{\"type\":\"note\",\"key\":null,\"value\":\"   \"},{\"type\":\"preference\",\"key\":\"answer_length\",\"value\":\"Short answers.\",\"confidence\":0.2}]}",
+      "expected": [
+        {
+          "type": "goal",
+          "key": null,
+          "value": "Read the whole Bible this year.",
+          "importance": 1.0,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "raw": "{\"memories\":[]}",
+      "expected": []
+    },
+    {
+      "name": "garbage",
+      "raw": "I could not find anything to remember.",
+      "expected": []
+    }
+  ]
+}

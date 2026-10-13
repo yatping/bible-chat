@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "query": "Why did Jesus tell Peter to forgive 70x7?",
+      "expected": "\"jesus\" OR \"peter\" OR \"forgive\" OR \"70x7\""
+    },
+    {
+      "query": "Matthew 18:22",
+      "expected": "\"matthew\" OR \"18\" OR \"22\""
+    },
+    {
+      "query": "What is the fruit of the Spirit?",
+      "expected": "\"fruit\" OR \"spirit\""
+    },
+    {
+      "query": "who is it",
+      "expected": null
+    },
+    {
+      "query": "Béatitudes & mercy, mercy!",
+      "expected": "\"béatitudes\" OR \"mercy\""
+    },
+    {
+      "query": "Love is patient; love is kind (1 Cor 13)",
+      "expected": "\"love\" OR \"patient\" OR \"kind\" OR \"cor\" OR \"13\""
+    }
+  ]
+}
