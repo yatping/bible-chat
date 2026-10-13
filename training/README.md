@@ -287,3 +287,37 @@ The memory and summary rows in the comparison table guard the auxiliary tasks. M
 should be ≥ 0.98, and the fine-tuned model must not fall below the base model on memory type/key
 match, `empty_accuracy` or the summary word limit. If they regress, add more auxiliary seeds. The
 held-out auxiliary test set is small: 2 memory and 1 summary record with the default split.
+
+## Training on a Mac (MLX)
+
+`scripts/mlx_pipeline.sh [data quantize train eval merge gguf]` runs the whole pipeline on Apple Silicon
+(tested on an M1 Pro with 16 GB):
+`prepare_mlx_data.py` → `mlx_lm.convert -q` (4-bit QLoRA base, 2.5 GB) → `mlx_lm.lora -c configs/mlx_qlora.yaml`
+(~4 s/iteration) → `evaluate.py --backend mlx` → `merge_mlx_adapter.py`, which adds the adapter delta to the
+**full-precision** HF checkpoint in 2 GB shards (~45 s, 5 GB peak memory) → `convert_gguf.sh` (Q4_K_M = 3.4 GB).
+
+Results on the 28-record held-out test set (n is small; one refusal item = 14 points):
+
+| | base | v1 (lr 2e-4) | v2 (lr 1e-4, more distractor data) | v2 merged (MLX) |
+|---|---:|---:|---:|---:|
+| Correct refusals | 0.714 | 0.714 | 0.571 | 0.857 |
+| False refusals | 0.000 | 0.389 | 0.000 | 0.000 |
+| Citation coverage | 0.833 | 0.611 | 1.000 | 0.944 |
+| Format adherence | 1.000 | 0.333 | 1.000 | 1.000 |
+
+What we learned:
+- v1 overfit after about 1 epoch (validation loss 0.90 at iteration 200, 1.02 at 300) and learned to over-refuse.
+  v2 rebalanced the data (`--distractors-per-record 3`) and halved the learning rate.
+- llama-server and vLLM switch Gemma 4 to thinking mode by default; `evaluate.py` sends
+  `chat_template_kwargs: {enable_thinking: false}`.
+
+**Open issue: the fine-tune was trained in thinking mode.** mlx-lm's `TokenizerWrapper.apply_chat_template`
+defaults `enable_thinking` to **True** for Gemma 4, unlike Hugging Face, where it defaults to false. `mlx_lm.lora`'s
+chat dataset passes no kwargs, so the v1 and v2 adapters were trained on prompts with `<|think|>` in the system turn.
+The app, evaluation and llama-server all render without it. This mismatch is the leading suspect for the
+GGUF (llama.cpp b11500 and b11580, Q8_0 and Q4_K_M alike) refusing only 1/7 versus 6/7 for the same merged
+weights in MLX. Quantisation is ruled out because Q8_0 behaves like Q4_K_M, and so is the merge, because the merged
+checkpoint is good in MLX.
+
+Fix before shipping: train through a small wrapper that calls `mlx_lm.lora.train_model` with a dataset rendered via
+`apply_chat_template(..., enable_thinking=False)`, then re-run merge → GGUF → evaluate with `--backend openai`.

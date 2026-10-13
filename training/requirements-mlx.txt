@@ -1,0 +1,4 @@
+# Apple Silicon training stack (Mac). See README "Training on a Mac (MLX)".
+mlx-lm>=0.32.0
+numpy
+safetensors

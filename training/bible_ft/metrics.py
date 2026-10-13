@@ -37,7 +37,7 @@ REFUSAL_PATTERNS: tuple[str, ...] = (
     r"\binsufficient\s+(?:information|evidence|context|sources)",
     r"\bno\s+sources?\s+(?:were\s+)?(?:retrieved|supplied|provided|available)",
     r"\b(?:can(?:no|')t|cannot|can\s+not|unable\s+to)\s+(?:answer|say|confirm|tell|determine)\b[^.]{0,80}"
-    r"\b(?:from|with|based\s+on|using)\s+(?:the|these|this)\b",
+    r"\b(?:from|with|based\s+on|using)\s+(?:the|these|this|them|those)\b",
     r"\bnothing\s+in\s+the\s+(?:supplied|provided|retrieved|available)?\s*sources?",
     # Untuned Gemma phrasing: "I do not have the (specific|necessary) information in the provided sources",
     # "I do not have the text for Philippians 4:6-7", "I need the text of Micah 6:8".

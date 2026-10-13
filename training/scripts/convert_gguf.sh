@@ -11,7 +11,7 @@
 #   OUT_NAME        output file stem                    (default: bible-gemma)
 #   QUANT           quantisation type                   (default: Q4_K_M)
 #   SMOKE=1         run a short llama-cli prompt against the quantised model
-#   PYTHON          python with the conversion requirements (default: python3)
+#   PYTHON          python for convert_hf_to_gguf.py (default: a dedicated venv at training/.venv-gguf)
 set -euo pipefail
 
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
@@ -29,7 +29,7 @@ LLAMA_CPP_DIR="${LLAMA_CPP_DIR:-$TRAINING_DIR/outputs/llama.cpp}"
 LLAMA_CPP_REF="${LLAMA_CPP_REF:-b11500}"
 OUT_NAME="${OUT_NAME:-bible-gemma}"
 QUANT="${QUANT:-Q4_K_M}"
-PYTHON="${PYTHON:-python3}"
+PYTHON="${PYTHON:-}"
 
 [[ -f "$MERGED_DIR/config.json" ]] || { echo "no merged model at $MERGED_DIR (run merge_adapter.py)" >&2; exit 1; }
 mkdir -p "$OUT_DIR"
@@ -46,11 +46,17 @@ echo "llama.cpp @ $LLAMA_CPP_REF ($LLAMA_COMMIT)"
 
 # 2. Build the tools we need
 cmake -S "$LLAMA_CPP_DIR" -B "$LLAMA_CPP_DIR/build" -DCMAKE_BUILD_TYPE=Release >/dev/null
-cmake --build "$LLAMA_CPP_DIR/build" --config Release -j --target llama-quantize llama-cli >/dev/null
+cmake --build "$LLAMA_CPP_DIR/build" --config Release -j --target llama-quantize llama-cli llama-server >/dev/null
 BIN="$LLAMA_CPP_DIR/build/bin"
 
 # 3. HF -> GGUF f16 (the processor's chat template is embedded in the GGUF metadata)
+if [[ -z "$PYTHON" ]]; then
+  PYTHON="$TRAINING_DIR/.venv-gguf/bin/python"
+  [[ -x "$PYTHON" ]] || python3 -m venv "$TRAINING_DIR/.venv-gguf"
+fi
 "$PYTHON" -m pip install -q -r "$LLAMA_CPP_DIR/requirements/requirements-convert_hf_to_gguf.txt"
+# llama.cpp pins transformers 4.x, which cannot read Gemma 4's tokenizer_config (extra_special_tokens is a list).
+"$PYTHON" -m pip install -q "transformers>=5.10.1"
 F16="$OUT_DIR/$OUT_NAME-f16.gguf"
 "$PYTHON" "$LLAMA_CPP_DIR/convert_hf_to_gguf.py" "$MERGED_DIR" --outtype f16 --outfile "$F16"
 

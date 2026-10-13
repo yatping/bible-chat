@@ -161,6 +161,9 @@ def openai_generator(args: argparse.Namespace) -> Generator:
             "repeat_penalty": args.repeat_penalty,  # llama-server extension
             "max_tokens": max_new_tokens,
             "seed": args.seed,
+            # llama-server (and vLLM) default Gemma 4 to thinking mode, which adds <|think|> to the system turn;
+            # render exactly the prompt the model was trained on and the app sends.
+            "chat_template_kwargs": {"enable_thinking": False},
         }
         req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers, method="POST")
         with urllib.request.urlopen(req, timeout=600) as resp:

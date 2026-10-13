@@ -1,0 +1,34 @@
+# QLoRA on Apple Silicon with mlx-lm (`mlx_lm.lora -c training/configs/mlx_qlora.yaml`).
+# Mirrors the CUDA recipe in scripts/train_qlora.py where MLX allows:
+# 4-bit base (QLoRA), LoRA r=16 with alpha/r = 1, lr 2e-4, effective batch of 8,
+# loss on the final assistant turn only (mask_prompt).
+model: training/outputs/mlx/gemma-4-E2B-it-4bit
+train: true
+data: training/outputs/mlx_data
+adapter_path: training/outputs/mlx/adapter
+fine_tune_type: lora
+num_layers: -1            # all decoder layers
+lora_parameters:
+  rank: 16
+  scale: 1.0              # = lora_alpha / r in PEFT terms
+  dropout: 0.05
+mask_prompt: true
+batch_size: 1
+grad_accumulation_steps: 8
+# `iters` counts micro-batches; the LR schedule advances once per optimizer update (iters / grad_accumulation_steps).
+# ~1 epoch: on the ~200-conversation seed dataset validation loss bottoms out around iteration 200
+# (3.45 → 0.90) and rises after that (1.02 at 300) while training loss keeps falling, i.e. overfitting.
+# Scale iters with the dataset size and keep the checkpoint with the lowest validation loss.
+iters: 200
+learning_rate: 2.0e-4
+lr_schedule:              # 25 optimizer updates: 3 warmup + 22 cosine
+  name: cosine_decay
+  warmup: 3
+  arguments: [2.0e-4, 22, 1.0e-5]
+max_seq_length: 2048
+grad_checkpoint: true     # fits 16 GB unified memory
+steps_per_report: 10
+steps_per_eval: 50
+val_batches: -1
+save_every: 100
+seed: 13
