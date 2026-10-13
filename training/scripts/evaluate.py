@@ -98,7 +98,8 @@ def hf_generator(args: argparse.Namespace) -> Generator:
 
     def generate(messages: list[dict[str, str]], deterministic: bool, max_new_tokens: int) -> str:
         inputs = processor.apply_chat_template(
-            messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt"
+            messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt",
+            enable_thinking=False,  # the on-device template renders with thinking off
         ).to(model.device)
         sampling = (
             {"do_sample": False}

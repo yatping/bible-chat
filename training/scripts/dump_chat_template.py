@@ -47,7 +47,7 @@ def main(argv: list[str] | None = None) -> int:
         messages = build_messages_from_inputs(case["input"])
         if messages != case["expected_messages"]:
             raise SystemExit(f"prompt_format does not match golden case {case['name']!r}")
-        text = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+        text = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=False, enable_thinking=False)
         rendered.append({"name": case["name"], "rendered": text})
 
     template = getattr(processor, "chat_template", None) or getattr(processor.tokenizer, "chat_template", None)

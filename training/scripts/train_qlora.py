@@ -85,8 +85,8 @@ class AssistantOnlyCollator:
 
     def encode(self, messages: list[dict[str, str]]) -> tuple[list[int], list[int]]:
         assert messages[-1]["role"] == "assistant", "last message must be the gold answer"
-        full_text = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
-        prompt_text = self.processor.apply_chat_template(messages[:-1], tokenize=False, add_generation_prompt=True)
+        full_text = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=False, enable_thinking=False)
+        prompt_text = self.processor.apply_chat_template(messages[:-1], tokenize=False, add_generation_prompt=True, enable_thinking=False)
         full = self.tokenizer(full_text, add_special_tokens=False)["input_ids"]
         prompt = self.tokenizer(prompt_text, add_special_tokens=False)["input_ids"]
         if full[: len(prompt)] != prompt:

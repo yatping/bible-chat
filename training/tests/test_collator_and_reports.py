@@ -18,7 +18,7 @@ class FakeTokenizer:
 class FakeProcessor:
     tokenizer = FakeTokenizer()
 
-    def apply_chat_template(self, messages, tokenize=False, add_generation_prompt=False):
+    def apply_chat_template(self, messages, tokenize=False, add_generation_prompt=False, enable_thinking=False):
         out = "<bos>"
         for m in messages:
             out += f"<turn>{m['role']}\n{m['content']}<end>\n"
