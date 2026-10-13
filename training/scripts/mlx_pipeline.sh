@@ -28,7 +28,7 @@ for s in "${STEPS[@]}"; do
   case "$s" in
     data)
       step "Build, split and convert the dataset"
-      "$PY" training/scripts/build_dataset.py
+      "$PY" training/scripts/build_dataset.py --distractors-per-record 3
       "$PY" training/scripts/split_dataset.py
       "$PY" training/scripts/prepare_mlx_data.py
       ;;
@@ -38,7 +38,7 @@ for s in "${STEPS[@]}"; do
       ;;
     train)
       step "QLoRA (configs/mlx_qlora.yaml)"
-      "$BIN/mlx_lm.lora" -c training/configs/mlx_qlora.yaml
+      "$PY" training/scripts/train_mlx.py -c training/configs/mlx_qlora.yaml
       ;;
     eval)
       step "Evaluate base vs fine-tuned on the held-out test split (greedy, same 4-bit base)"
