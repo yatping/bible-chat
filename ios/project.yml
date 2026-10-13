@@ -1,0 +1,67 @@
+name: BibleAI
+options:
+  bundleIdPrefix: com.bibleai
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+packages:
+  BibleAICore:
+    path: BibleAICore
+targets:
+  BibleAI:
+    type: application
+    platform: iOS
+    sources:
+      - path: BibleAI
+        excludes:
+          - "Resources/Content"
+          - "Resources/Content/**"
+      # Folder reference: bible.sqlite + rag_embeddings.f16 land in BibleAI.app/Content/.
+      # Missing files are fine; the app shows a "content not bundled" message.
+      - path: BibleAI/Resources/Content
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: BibleAICore
+      # Fetched by scripts/fetch_llama_xcframework.sh (gitignored).
+      - framework: Frameworks/llama.xcframework
+        embed: true
+        codeSign: true
+    entitlements:
+      path: BibleAI/BibleAI.entitlements
+      properties:
+        # The 2B Q4_K_M model + KV cache needs more than the default per-app memory limit on 6–8 GB iPhones.
+        com.apple.developer.kernel.increased-memory-limit: true
+    info:
+      path: BibleAI/Info.plist
+      properties:
+        CFBundleDisplayName: Bible Chat
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bibleai.app
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        DEAD_CODE_STRIPPING: YES
+schemes:
+  BibleAI:
+    build:
+      targets:
+        BibleAI: all
+    run:
+      config: Debug
+    archive:
+      config: Release
