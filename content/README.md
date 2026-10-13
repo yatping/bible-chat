@@ -123,13 +123,16 @@ in the GGUF, on-device query vectors would not match the document vectors built 
 as a hit if it overlaps any relevant range. Recall@k = share of questions with a hit in the top k; MRR over the
 top 30. Modes: `reference` (list R), `lexical` (L), `semantic` (V), `hybrid` (RRF of R, V, L).
 
-Results with the **hash** embedder (semantic row is not meaningful; rerun after an EmbeddingGemma build):
+Results with **EmbeddingGemma** (`google/embeddinggemma-300m`, 256-d, built on an M1 Pro with `--device mps` in ~8 min):
 
 | mode | Recall@1 | Recall@5 | MRR |
 |---|---:|---:|---:|
 | reference | 0.273 | 0.273 | 0.273 |
 | lexical | 0.439 | 0.652 | 0.530 |
-| semantic | 0.212 | 0.439 | 0.311 |
-| hybrid | 0.697 | 0.864 | 0.766 |
+| semantic | 0.773 | 0.970 | 0.844 |
+| hybrid | 0.803 | 0.985 | 0.870 |
+
+With the `hash` smoke-test embedder the semantic row drops to 0.212 / 0.439 / 0.311 and hybrid to
+0.697 / 0.864 / 0.766. The gap is how much real embeddings contribute.
 
 (`reference` can only hit the 18 explicit-reference questions, which it does at rank 1: 18/66 = 0.273.)
