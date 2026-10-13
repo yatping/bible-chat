@@ -62,9 +62,10 @@ Known limitations:
 
 - **Chunks aren't true pericopes.** The ebible.org WEB USFM has no section headings, so chunks are ~8-verse
   paragraph windows. Adding a curated heading list would give true pericopes; the chunker already supports headings.
-- **Embedder not hosted yet.** The fine-tuned model is published at
-  [patrick0617/bible-gemma-4-e2b-gguf](https://huggingface.co/patrick0617/bible-gemma-4-e2b-gguf), and the app manifest
-  points to it. The EmbeddingGemma GGUF entry still has a placeholder URL (build it with `content/scripts/export_embedder_gguf.sh`).
+- **Models are downloaded from Hugging Face.** The fine-tuned generator is
+  [patrick0617/bible-gemma-4-e2b-gguf](https://huggingface.co/patrick0617/bible-gemma-4-e2b-gguf). The embedder is the
+  stock, not fine-tuned, [ggml-org/embeddinggemma-300M-GGUF](https://huggingface.co/ggml-org/embeddinggemma-300M-GGUF)
+  Q8_0; its vectors match the sentence-transformers vectors used to build the index (cosine 0.9999 on llama.cpp b11580).
 - **Different llama.cpp tags.** The conversion scripts pin llama.cpp `b11500` and the app runtime pins `b11580`.
   The `b11500` GGUF has been tested on a `b11580` llama-server, though not yet on a device.
 

@@ -14,9 +14,9 @@
       "id": "embeddinggemma-300m-q8_0",
       "role": "embedder",
       "filename": "embeddinggemma-300m-q8_0.gguf",
-      "url": "https://example.com/models/embeddinggemma-300m-q8_0.gguf",
-      "sha256": "<fill in from content/scripts/export_embedder_gguf.sh output>",
-      "bytes": 0,
+      "url": "https://huggingface.co/ggml-org/embeddinggemma-300M-GGUF/resolve/main/embeddinggemma-300M-Q8_0.gguf",
+      "sha256": "b5ce9d77a3fc4b3b39ccb5643c36777911cc4eb46a66962eadfa3f5f60490d63",
+      "bytes": 333590944,
       "embedding_dim": 768,
       "truncate_dim": 256
     }

@@ -105,6 +105,11 @@ columns are filled too. Because the embedding file covers every chunk, adding so
 
 ## EmbeddingGemma on the phone (GGUF)
 
+The app uses the stock **ggml-org/embeddinggemma-300M-GGUF** (`embeddinggemma-300M-Q8_0.gguf`, 334 MB). Its vectors
+match this build's sentence-transformers vectors: cosine 0.9999 for query, document and memory prompts, after
+truncating to 256 dims, on llama.cpp b11580. So it includes the Dense projection layers, and you don't need to convert
+your own. The export script below is only for a custom quantisation:
+
 ```bash
 content/scripts/export_embedder_gguf.sh            # -> content/build/gguf/*.gguf (+ sha256)
 VERIFY=1 content/scripts/export_embedder_gguf.sh   # also compares llama.cpp vs sentence-transformers vectors
