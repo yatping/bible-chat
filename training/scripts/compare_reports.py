@@ -25,6 +25,7 @@ ROWS: tuple[tuple[str, str, str, bool], ...] = (
     ("overall", "false_refusal_rate", "False refusals", False),
     ("overall", "citation_coverage", "Citation coverage", True),
     ("overall", "format_adherence", "Format adherence", True),
+    ("overall", "thinking_leak_rate", "Thought-channel leaks", False),
     ("overall", "n", "Answer items", True),
     ("memory_extraction", "json_valid_rate", "Memory: JSON valid", True),
     ("memory_extraction", "strict_json_rate", "Memory: strict JSON", True),

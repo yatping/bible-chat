@@ -3,6 +3,7 @@
 
 Backends:
   --backend hf      --model PATH_OR_ID [--adapter ADAPTER_DIR]   (transformers, GPU recommended)
+  --backend mlx     --model MLX_MODEL_DIR [--adapter MLX_ADAPTER] (Apple Silicon, mlx-lm)
   --backend openai  --base-url http://localhost:8080/v1          (llama.cpp llama-server or any
                                                                   OpenAI-compatible server; this is how
                                                                   the Q4_K_M GGUF is evaluated)
@@ -18,6 +19,8 @@ Examples:
   python training/scripts/evaluate.py --backend hf --model google/gemma-4-E2B-it --label base
   python training/scripts/evaluate.py --backend hf --model google/gemma-4-E2B-it \\
       --adapter training/outputs/gemma4-e2b-bible-qlora/adapter --label finetuned
+  python training/scripts/evaluate.py --backend mlx --model training/outputs/mlx/gemma-4-E2B-it-4bit \
+      --adapter training/outputs/mlx/adapter --label mlx-finetuned
   llama-server -m bible-gemma-q4_k_m.gguf -c 6144 --port 8080 &
   python training/scripts/evaluate.py --backend openai --base-url http://localhost:8080/v1 --label q4_k_m
 """
@@ -47,6 +50,7 @@ from bible_ft.metrics import (
     is_refusal,
 )
 from bible_ft.schema import is_rag, is_refusal_record, prompt_messages, task_of
+from bible_ft.thinking import strip_thinking
 
 GEN_DEFAULTS = {"temperature": 0.3, "top_p": 0.9, "top_k": 40, "repeat_penalty": 1.1, "max_new_tokens": 1200}
 AUX_GEN = {"temperature": 0.0, "max_new_tokens": 256}  # §5: memory extraction / summarisation
@@ -57,13 +61,15 @@ Generator = Callable[[list[dict[str, str]], bool, int], str]
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--backend", choices=["hf", "openai"], required=True)
+    p.add_argument("--backend", choices=["hf", "mlx", "openai"])
+    p.add_argument("--rescore", type=Path, metavar="EVAL_DIR",
+                   help="recompute metrics/report from EVAL_DIR/predictions.jsonl without generating")
     p.add_argument("--test", type=Path, default=TRAINING_DIR / "outputs" / "splits" / "test.jsonl")
     p.add_argument("--label", default="model", help="name used in reports (base / finetuned / q4_k_m)")
     p.add_argument("--out-dir", type=Path, default=None, help="default: training/outputs/eval/<label>")
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--model", help="hf: model id or path; openai: model name sent to the server")
-    p.add_argument("--adapter", help="hf: optional PEFT adapter directory")
+    p.add_argument("--adapter", help="hf: optional PEFT adapter directory; mlx: optional mlx-lm adapter directory")
     p.add_argument("--base-url", default="http://localhost:8080/v1")
     p.add_argument("--api-key-env", default="OPENAI_API_KEY", help="env var holding the API key (optional)")
     p.add_argument("--temperature", type=float, default=GEN_DEFAULTS["temperature"])
@@ -116,6 +122,29 @@ def hf_generator(args: argparse.Namespace) -> Generator:
     return generate
 
 
+def mlx_generator(args: argparse.Namespace) -> Generator:
+    import mlx.core as mx
+    from mlx_lm import generate as mlx_generate
+    from mlx_lm import load
+    from mlx_lm.sample_utils import make_logits_processors, make_sampler
+
+    if not args.model:
+        raise SystemExit("--model is required for --backend mlx")
+    mx.random.seed(args.seed)
+    model, tokenizer = load(args.model, adapter_path=args.adapter)
+    penalties = make_logits_processors(repetition_penalty=args.repeat_penalty)
+
+    def generate(messages: list[dict[str, str]], deterministic: bool, max_new_tokens: int) -> str:
+        prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True, enable_thinking=False)
+        temp = 0.0 if args.greedy or deterministic else args.temperature
+        sampler = make_sampler(temp=temp, top_p=args.top_p, top_k=args.top_k)
+        text = mlx_generate(model, tokenizer, prompt=prompt, max_tokens=max_new_tokens, sampler=sampler,
+                            logits_processors=penalties, verbose=False)
+        return text.strip()
+
+    return generate
+
+
 def openai_generator(args: argparse.Namespace) -> Generator:
     url = args.base_url.rstrip("/") + "/chat/completions"
     headers = {"Content-Type": "application/json"}
@@ -147,16 +176,19 @@ def evaluate(records: list[dict[str, Any]], generate: Generator, max_new_tokens:
         started = time.perf_counter()
         if not is_rag(record):
             raw = generate(prompt_messages(record), True, AUX_GEN["max_new_tokens"])
+            output, thought = strip_thinking(raw)
             predictions.append({
                 "id": record["id"], "task": task_of(record), "category": record["category"],
-                "gold": record["answer"], "raw_output": raw, "seconds": round(time.perf_counter() - started, 2),
+                "gold": record["answer"], "raw_output": raw, "output": output, "had_thinking": thought,
+                "seconds": round(time.perf_counter() - started, 2),
             })
             print(f"[{i}/{len(records)}] {record['id']} ({task_of(record)})")
             continue
         n_sources = len(record["inputs"]["sources"])
         raw = generate(prompt_messages(record), False, max_new_tokens)
         elapsed = time.perf_counter() - started
-        result = validate_citations(raw, n_sources)
+        output, thought = strip_thinking(raw)  # score what the app would show
+        result = validate_citations(output, n_sources)
         predictions.append({
             "id": record["id"],
             "task": "rag_answer",
@@ -166,10 +198,12 @@ def evaluate(records: list[dict[str, Any]], generate: Generator, max_new_tokens:
             "format": format_tag(record["tags"]),
             "source_count": n_sources,
             "raw_output": raw,
+            "output": output,
+            "had_thinking": thought,
             "validated_output": result.text,
             "cited": result.cited,
             "removed": result.removed,
-            "predicted_refusal": is_refusal(raw, n_sources),
+            "predicted_refusal": is_refusal(output, n_sources),
             "seconds": round(elapsed, 2),
         })
         print(f"[{i}/{len(records)}] {record['id']} cited={result.cited} removed={result.removed}")
@@ -182,7 +216,7 @@ def metrics_from_predictions(all_predictions: list[dict[str, Any]]) -> dict[str,
     summaries = [p for p in all_predictions if p.get("task") == "summarization"]
     items = [
         EvalItem(
-            prediction=p["raw_output"],
+            prediction=p.get("output", p["raw_output"]),
             source_count=p["source_count"],
             expect_refusal=p["expect_refusal"],
             gold_cited=tuple(p["gold_cited"]),
@@ -191,6 +225,9 @@ def metrics_from_predictions(all_predictions: list[dict[str, Any]]) -> dict[str,
         for p in predictions
     ]
     overall = compute_metrics(items).as_dict()
+    overall["thinking_leak_rate"] = (
+        sum(bool(p.get("had_thinking")) for p in all_predictions) / len(all_predictions) if all_predictions else 0.0
+    )
     by_category: dict[str, Any] = {}
     for category in sorted({p["category"] for p in predictions}):
         subset = [it for it, p in zip(items, predictions) if p["category"] == category]
@@ -198,8 +235,8 @@ def metrics_from_predictions(all_predictions: list[dict[str, Any]]) -> dict[str,
     return {
         "overall": overall,
         "by_category": by_category,
-        "memory_extraction": compute_memory_metrics([p["raw_output"] for p in memory], [p["gold"] for p in memory]),
-        "summarization": compute_summary_metrics([p["raw_output"] for p in summaries]),
+        "memory_extraction": compute_memory_metrics([p.get("output", p["raw_output"]) for p in memory], [p["gold"] for p in memory]),
+        "summarization": compute_summary_metrics([p.get("output", p["raw_output"]) for p in summaries]),
     }
 
 
@@ -240,10 +277,30 @@ def render_report(label: str, metrics: dict[str, Any], predictions: list[dict[st
     return "\n".join(lines) + "\n"
 
 
+def rescore(out_dir: Path) -> int:
+    """Re-apply the current refusal heuristic and metrics to saved predictions (e.g. after a metrics fix)."""
+    predictions = list(read_jsonl(out_dir / "predictions.jsonl"))
+    for p in predictions:
+        if p.get("task", "rag_answer") == "rag_answer":
+            p["predicted_refusal"] = is_refusal(p.get("output", p["raw_output"]), p["source_count"])
+    previous = json.loads((out_dir / "metrics.json").read_text(encoding="utf-8"))
+    metrics = metrics_from_predictions(predictions)
+    metrics["label"], metrics["generation"] = previous.get("label"), previous.get("generation")
+    write_jsonl(out_dir / "predictions.jsonl", predictions)
+    (out_dir / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")
+    (out_dir / "report.md").write_text(render_report(metrics["label"], metrics, predictions), encoding="utf-8")
+    print(json.dumps(metrics["overall"], indent=2))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.rescore:
+        return rescore(args.rescore)
+    if not args.backend:
+        raise SystemExit("--backend is required unless --rescore is given")
     records = list(read_jsonl(args.test))[: args.limit]
-    generate = hf_generator(args) if args.backend == "hf" else openai_generator(args)
+    generate = {"hf": hf_generator, "mlx": mlx_generator, "openai": openai_generator}[args.backend](args)
     predictions = evaluate(records, generate, args.max_new_tokens)
     metrics = metrics_from_predictions(predictions)
     metrics["label"] = args.label

@@ -39,6 +39,11 @@ REFUSAL_PATTERNS: tuple[str, ...] = (
     r"\b(?:can(?:no|')t|cannot|can\s+not|unable\s+to)\s+(?:answer|say|confirm|tell|determine)\b[^.]{0,80}"
     r"\b(?:from|with|based\s+on|using)\s+(?:the|these|this)\b",
     r"\bnothing\s+in\s+the\s+(?:supplied|provided|retrieved|available)?\s*sources?",
+    # Untuned Gemma phrasing: "I do not have the (specific|necessary) information in the provided sources",
+    # "I do not have the text for Philippians 4:6-7", "I need the text of Micah 6:8".
+    r"\b(?:do\s+not|don't)\s+have\s+(?:the\s+|any\s+|enough\s+)?(?:specific\s+|necessary\s+|relevant\s+)?"
+    r"(?:information|text|details|passage)\b",
+    r"\bI\s+(?:would\s+)?need\s+the\s+(?:text|passage|relevant\s+passage)\b",
 )
 _REFUSAL_RE = re.compile("|".join(f"(?:{p})" for p in REFUSAL_PATTERNS), re.IGNORECASE)
 _BULLET_RE = re.compile(r"^\s*(?:[-*•]|\d+[.)])\s+\S", re.MULTILINE)

@@ -9,6 +9,10 @@ from bible_ft.metrics import EvalItem, check_format, compute_metrics, has_refusa
     "There is not enough information in the sources to answer.",
     "No sources were retrieved for this question.",
     "The passages supplied (Ruth 1:16) do not address it.",
+    # untuned Gemma 4 phrasings observed in the MLX base-model eval
+    "I do not have the specific information in my sources to determine which city Paul was in.",
+    "I do not have the text for Philippians 4:6-7 in the provided sources.",
+    "I need the text of Micah 6:8 to tell you what it means.",
 ])
 def test_refusal_phrases(text):
     assert has_refusal_phrase(text)
@@ -23,6 +27,7 @@ def test_refusal_with_citation_is_not_refusal():
 
 def test_plain_answer_is_not_refusal():
     assert not has_refusal_phrase("Jesus wept [S1].")
+    assert not has_refusal_phrase("The text refers to a huge fish, but it does not specify a whale [S1].")
 
 
 def test_format_checks():
