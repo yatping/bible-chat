@@ -1,0 +1,14 @@
+# Training / evaluation / merge stack (GPU box: CUDA 12.x, Python 3.11-3.13 recommended).
+# Install torch first from the matching CUDA index if the default wheel doesn't fit your driver:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+torch>=2.6
+transformers>=5.10.1
+datasets>=3.0
+accelerate>=1.4
+evaluate>=0.4.3
+bitsandbytes>=0.45
+trl>=0.20
+peft>=0.19.0
+protobuf
+sentencepiece
+tensorboard

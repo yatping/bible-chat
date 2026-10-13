@@ -1,0 +1,2 @@
+# Pure-Python modules and tests need nothing else.
+pytest>=8
