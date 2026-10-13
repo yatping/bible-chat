@@ -1,0 +1,827 @@
+{
+ "source": "World English Bible (public domain), fetched from bible-api.com",
+ "translation": "WEB",
+ "chunks": [
+  {
+   "id": 1,
+   "title": "The Creation",
+   "reference": "Genesis 1:1-2:3",
+   "book_index": 1,
+   "chapter": 1,
+   "verse_start": 1,
+   "chapter_end": 2,
+   "verse_end": 3,
+   "verses": [
+    {
+     "chapter": 1,
+     "verse": 1,
+     "text": "In the beginning, God created the heavens and the earth."
+    },
+    {
+     "chapter": 1,
+     "verse": 2,
+     "text": "The earth was formless and empty. Darkness was on the surface of the deep and God’s Spirit was hovering over the surface of the waters."
+    },
+    {
+     "chapter": 1,
+     "verse": 3,
+     "text": "God said, “Let there be light,” and there was light."
+    },
+    {
+     "chapter": 1,
+     "verse": 4,
+     "text": "God saw the light, and saw that it was good. God divided the light from the darkness."
+    },
+    {
+     "chapter": 1,
+     "verse": 5,
+     "text": "God called the light “day”, and the darkness he called “night”. There was evening and there was morning, the first day."
+    },
+    {
+     "chapter": 1,
+     "verse": 6,
+     "text": "God said, “Let there be an expanse in the middle of the waters, and let it divide the waters from the waters.”"
+    },
+    {
+     "chapter": 1,
+     "verse": 7,
+     "text": "God made the expanse, and divided the waters which were under the expanse from the waters which were above the expanse; and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 8,
+     "text": "God called the expanse “sky”. There was evening and there was morning, a second day."
+    },
+    {
+     "chapter": 1,
+     "verse": 9,
+     "text": "God said, “Let the waters under the sky be gathered together to one place, and let the dry land appear”; and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 10,
+     "text": "God called the dry land “earth”, and the gathering together of the waters he called “seas”. God saw that it was good."
+    },
+    {
+     "chapter": 1,
+     "verse": 11,
+     "text": "God said, “Let the earth yield grass, herbs yielding seeds, and fruit trees bearing fruit after their kind, with their seeds in it, on the earth”; and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 12,
+     "text": "The earth yielded grass, herbs yielding seed after their kind, and trees bearing fruit, with their seeds in it, after their kind; and God saw that it was good."
+    },
+    {
+     "chapter": 1,
+     "verse": 13,
+     "text": "There was evening and there was morning, a third day."
+    },
+    {
+     "chapter": 1,
+     "verse": 14,
+     "text": "God said, “Let there be lights in the expanse of the sky to divide the day from the night; and let them be for signs to mark seasons, days, and years;"
+    },
+    {
+     "chapter": 1,
+     "verse": 15,
+     "text": "and let them be for lights in the expanse of the sky to give light on the earth”; and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 16,
+     "text": "God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars."
+    },
+    {
+     "chapter": 1,
+     "verse": 17,
+     "text": "God set them in the expanse of the sky to give light to the earth,"
+    },
+    {
+     "chapter": 1,
+     "verse": 18,
+     "text": "and to rule over the day and over the night, and to divide the light from the darkness. God saw that it was good."
+    },
+    {
+     "chapter": 1,
+     "verse": 19,
+     "text": "There was evening and there was morning, a fourth day."
+    },
+    {
+     "chapter": 1,
+     "verse": 20,
+     "text": "God said, “Let the waters abound with living creatures, and let birds fly above the earth in the open expanse of the sky.”"
+    },
+    {
+     "chapter": 1,
+     "verse": 21,
+     "text": "God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good."
+    },
+    {
+     "chapter": 1,
+     "verse": 22,
+     "text": "God blessed them, saying, “Be fruitful, and multiply, and fill the waters in the seas, and let birds multiply on the earth.”"
+    },
+    {
+     "chapter": 1,
+     "verse": 23,
+     "text": "There was evening and there was morning, a fifth day."
+    },
+    {
+     "chapter": 1,
+     "verse": 24,
+     "text": "God said, “Let the earth produce living creatures after their kind, livestock, creeping things, and animals of the earth after their kind”; and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 25,
+     "text": "God made the animals of the earth after their kind, and the livestock after their kind, and everything that creeps on the ground after its kind. God saw that it was good."
+    },
+    {
+     "chapter": 1,
+     "verse": 26,
+     "text": "God said, “Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the birds of the sky, and over the livestock, and over all the earth, and over every creeping thing that creeps on the earth.”"
+    },
+    {
+     "chapter": 1,
+     "verse": 27,
+     "text": "God created man in his own image. In God’s image he created him; male and female he created them."
+    },
+    {
+     "chapter": 1,
+     "verse": 28,
+     "text": "God blessed them. God said to them, “Be fruitful, multiply, fill the earth, and subdue it. Have dominion over the fish of the sea, over the birds of the sky, and over every living thing that moves on the earth.”"
+    },
+    {
+     "chapter": 1,
+     "verse": 29,
+     "text": "God said, “Behold, I have given you every herb yielding seed, which is on the surface of all the earth, and every tree, which bears fruit yielding seed. It will be your food."
+    },
+    {
+     "chapter": 1,
+     "verse": 30,
+     "text": "To every animal of the earth, and to every bird of the sky, and to everything that creeps on the earth, in which there is life, I have given every green herb for food;” and it was so."
+    },
+    {
+     "chapter": 1,
+     "verse": 31,
+     "text": "God saw everything that he had made, and, behold, it was very good. There was evening and there was morning, a sixth day."
+    },
+    {
+     "chapter": 2,
+     "verse": 1,
+     "text": "The heavens, the earth, and all their vast array were finished."
+    },
+    {
+     "chapter": 2,
+     "verse": 2,
+     "text": "On the seventh day God finished his work which he had done; and he rested on the seventh day from all his work which he had done."
+    },
+    {
+     "chapter": 2,
+     "verse": 3,
+     "text": "God blessed the seventh day, and made it holy, because he rested in it from all his work of creation which he had done."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The Parable of the Unforgiving Servant",
+   "reference": "Matthew 18:21-35",
+   "book_index": 40,
+   "chapter": 18,
+   "verse_start": 21,
+   "chapter_end": 18,
+   "verse_end": 35,
+   "verses": [
+    {
+     "chapter": 18,
+     "verse": 21,
+     "text": "Then Peter came and said to him, “Lord, how often shall my brother sin against me, and I forgive him? Until seven times?”"
+    },
+    {
+     "chapter": 18,
+     "verse": 22,
+     "text": "Jesus said to him, “I don’t tell you until seven times, but, until seventy times seven."
+    },
+    {
+     "chapter": 18,
+     "verse": 23,
+     "text": "Therefore the Kingdom of Heaven is like a certain king, who wanted to reconcile accounts with his servants."
+    },
+    {
+     "chapter": 18,
+     "verse": 24,
+     "text": "When he had begun to reconcile, one was brought to him who owed him ten thousand talents."
+    },
+    {
+     "chapter": 18,
+     "verse": 25,
+     "text": "But because he couldn’t pay, his lord commanded him to be sold, with his wife, his children, and all that he had, and payment to be made."
+    },
+    {
+     "chapter": 18,
+     "verse": 26,
+     "text": "The servant therefore fell down and knelt before him, saying, ‘Lord, have patience with me, and I will repay you all!’"
+    },
+    {
+     "chapter": 18,
+     "verse": 27,
+     "text": "The lord of that servant, being moved with compassion, released him, and forgave him the debt."
+    },
+    {
+     "chapter": 18,
+     "verse": 28,
+     "text": "“But that servant went out, and found one of his fellow servants, who owed him one hundred denarii, and he grabbed him, and took him by the throat, saying, ‘Pay me what you owe!’"
+    },
+    {
+     "chapter": 18,
+     "verse": 29,
+     "text": "“So his fellow servant fell down at his feet and begged him, saying, ‘Have patience with me, and I will repay you!’"
+    },
+    {
+     "chapter": 18,
+     "verse": 30,
+     "text": "He would not, but went and cast him into prison, until he should pay back that which was due."
+    },
+    {
+     "chapter": 18,
+     "verse": 31,
+     "text": "So when his fellow servants saw what was done, they were exceedingly sorry, and came and told their lord all that was done."
+    },
+    {
+     "chapter": 18,
+     "verse": 32,
+     "text": "Then his lord called him in, and said to him, ‘You wicked servant! I forgave you all that debt, because you begged me."
+    },
+    {
+     "chapter": 18,
+     "verse": 33,
+     "text": "Shouldn’t you also have had mercy on your fellow servant, even as I had mercy on you?’"
+    },
+    {
+     "chapter": 18,
+     "verse": 34,
+     "text": "His lord was angry, and delivered him to the tormentors, until he should pay all that was due to him."
+    },
+    {
+     "chapter": 18,
+     "verse": 35,
+     "text": "So my heavenly Father will also do to you, if you don’t each forgive your brother from your hearts for his misdeeds.”"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Jesus and Nicodemus",
+   "reference": "John 3:1-21",
+   "book_index": 43,
+   "chapter": 3,
+   "verse_start": 1,
+   "chapter_end": 3,
+   "verse_end": 21,
+   "verses": [
+    {
+     "chapter": 3,
+     "verse": 1,
+     "text": "Now there was a man of the Pharisees named Nicodemus, a ruler of the Jews."
+    },
+    {
+     "chapter": 3,
+     "verse": 2,
+     "text": "The same came to him by night, and said to him, “Rabbi, we know that you are a teacher come from God, for no one can do these signs that you do, unless God is with him.”"
+    },
+    {
+     "chapter": 3,
+     "verse": 3,
+     "text": "Jesus answered him, “Most certainly, I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+    },
+    {
+     "chapter": 3,
+     "verse": 4,
+     "text": "Nicodemus said to him, “How can a man be born when he is old? Can he enter a second time into his mother’s womb, and be born?”"
+    },
+    {
+     "chapter": 3,
+     "verse": 5,
+     "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and spirit, he can’t enter into God’s Kingdom."
+    },
+    {
+     "chapter": 3,
+     "verse": 6,
+     "text": "That which is born of the flesh is flesh. That which is born of the Spirit is spirit."
+    },
+    {
+     "chapter": 3,
+     "verse": 7,
+     "text": "Don’t marvel that I said to you, ‘You must be born anew.’"
+    },
+    {
+     "chapter": 3,
+     "verse": 8,
+     "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+    },
+    {
+     "chapter": 3,
+     "verse": 9,
+     "text": "Nicodemus answered him, “How can these things be?”"
+    },
+    {
+     "chapter": 3,
+     "verse": 10,
+     "text": "Jesus answered him, “Are you the teacher of Israel, and don’t understand these things?"
+    },
+    {
+     "chapter": 3,
+     "verse": 11,
+     "text": "Most certainly I tell you, we speak that which we know, and testify of that which we have seen, and you don’t receive our witness."
+    },
+    {
+     "chapter": 3,
+     "verse": 12,
+     "text": "If I told you earthly things and you don’t believe, how will you believe if I tell you heavenly things?"
+    },
+    {
+     "chapter": 3,
+     "verse": 13,
+     "text": "No one has ascended into heaven, but he who descended out of heaven, the Son of Man, who is in heaven."
+    },
+    {
+     "chapter": 3,
+     "verse": 14,
+     "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,"
+    },
+    {
+     "chapter": 3,
+     "verse": 15,
+     "text": "that whoever believes in him should not perish, but have eternal life."
+    },
+    {
+     "chapter": 3,
+     "verse": 16,
+     "text": "For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life."
+    },
+    {
+     "chapter": 3,
+     "verse": 17,
+     "text": "For God didn’t send his Son into the world to judge the world, but that the world should be saved through him."
+    },
+    {
+     "chapter": 3,
+     "verse": 18,
+     "text": "He who believes in him is not judged. He who doesn’t believe has been judged already, because he has not believed in the name of the one and only Son of God."
+    },
+    {
+     "chapter": 3,
+     "verse": 19,
+     "text": "This is the judgment, that the light has come into the world, and men loved the darkness rather than the light; for their works were evil."
+    },
+    {
+     "chapter": 3,
+     "verse": 20,
+     "text": "For everyone who does evil hates the light, and doesn’t come to the light, lest his works would be exposed."
+    },
+    {
+     "chapter": 3,
+     "verse": 21,
+     "text": "But he who does the truth comes to the light, that his works may be revealed, that they have been done in God.”"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "John the Baptist Exalts Christ",
+   "reference": "John 3:22-36",
+   "book_index": 43,
+   "chapter": 3,
+   "verse_start": 22,
+   "chapter_end": 3,
+   "verse_end": 36,
+   "verses": [
+    {
+     "chapter": 3,
+     "verse": 22,
+     "text": "After these things, Jesus came with his disciples into the land of Judea. He stayed there with them, and baptized."
+    },
+    {
+     "chapter": 3,
+     "verse": 23,
+     "text": "John also was baptizing in Enon near Salim, because there was much water there. They came, and were baptized."
+    },
+    {
+     "chapter": 3,
+     "verse": 24,
+     "text": "For John was not yet thrown into prison."
+    },
+    {
+     "chapter": 3,
+     "verse": 25,
+     "text": "There arose therefore a questioning on the part of John’s disciples with some Jews about purification."
+    },
+    {
+     "chapter": 3,
+     "verse": 26,
+     "text": "They came to John, and said to him, “Rabbi, he who was with you beyond the Jordan, to whom you have testified, behold, the same baptizes, and everyone is coming to him.”"
+    },
+    {
+     "chapter": 3,
+     "verse": 27,
+     "text": "John answered, “A man can receive nothing, unless it has been given him from heaven."
+    },
+    {
+     "chapter": 3,
+     "verse": 28,
+     "text": "You yourselves testify that I said, ‘I am not the Christ,’ but, ‘I have been sent before him.’"
+    },
+    {
+     "chapter": 3,
+     "verse": 29,
+     "text": "He who has the bride is the bridegroom; but the friend of the bridegroom, who stands and hears him, rejoices greatly because of the bridegroom’s voice. This, my joy, therefore is made full."
+    },
+    {
+     "chapter": 3,
+     "verse": 30,
+     "text": "He must increase, but I must decrease."
+    },
+    {
+     "chapter": 3,
+     "verse": 31,
+     "text": "He who comes from above is above all. He who is from the earth belongs to the earth, and speaks of the earth. He who comes from heaven is above all."
+    },
+    {
+     "chapter": 3,
+     "verse": 32,
+     "text": "What he has seen and heard, of that he testifies; and no one receives his witness."
+    },
+    {
+     "chapter": 3,
+     "verse": 33,
+     "text": "He who has received his witness has set his seal to this, that God is true."
+    },
+    {
+     "chapter": 3,
+     "verse": 34,
+     "text": "For he whom God has sent speaks the words of God; for God gives the Spirit without measure."
+    },
+    {
+     "chapter": 3,
+     "verse": 35,
+     "text": "The Father loves the Son, and has given all things into his hand."
+    },
+    {
+     "chapter": 3,
+     "verse": 36,
+     "text": "One who believes in the Son has eternal life, but one who disobeys the Son won’t see life, but the wrath of God remains on him.”"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Peace with God through Faith",
+   "reference": "Romans 5:1-11",
+   "book_index": 45,
+   "chapter": 5,
+   "verse_start": 1,
+   "chapter_end": 5,
+   "verse_end": 11,
+   "verses": [
+    {
+     "chapter": 5,
+     "verse": 1,
+     "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;"
+    },
+    {
+     "chapter": 5,
+     "verse": 2,
+     "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God."
+    },
+    {
+     "chapter": 5,
+     "verse": 3,
+     "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+    },
+    {
+     "chapter": 5,
+     "verse": 4,
+     "text": "and perseverance, proven character; and proven character, hope:"
+    },
+    {
+     "chapter": 5,
+     "verse": 5,
+     "text": "and hope doesn’t disappoint us, because God’s love has been poured out into our hearts through the Holy Spirit who was given to us."
+    },
+    {
+     "chapter": 5,
+     "verse": 6,
+     "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+    },
+    {
+     "chapter": 5,
+     "verse": 7,
+     "text": "For one will hardly die for a righteous man. Yet perhaps for a righteous person someone would even dare to die."
+    },
+    {
+     "chapter": 5,
+     "verse": 8,
+     "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+    },
+    {
+     "chapter": 5,
+     "verse": 9,
+     "text": "Much more then, being now justified by his blood, we will be saved from God’s wrath through him."
+    },
+    {
+     "chapter": 5,
+     "verse": 10,
+     "text": "For if, while we were enemies, we were reconciled to God through the death of his Son, much more, being reconciled, we will be saved by his life."
+    },
+    {
+     "chapter": 5,
+     "verse": 11,
+     "text": "Not only so, but we also rejoice in God through our Lord Jesus Christ, through whom we have now received the reconciliation."
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Death in Adam, Life in Christ",
+   "reference": "Romans 5:12-21",
+   "book_index": 45,
+   "chapter": 5,
+   "verse_start": 12,
+   "chapter_end": 5,
+   "verse_end": 21,
+   "verses": [
+    {
+     "chapter": 5,
+     "verse": 12,
+     "text": "Therefore as sin entered into the world through one man, and death through sin; and so death passed to all men, because all sinned."
+    },
+    {
+     "chapter": 5,
+     "verse": 13,
+     "text": "For until the law, sin was in the world; but sin is not charged when there is no law."
+    },
+    {
+     "chapter": 5,
+     "verse": 14,
+     "text": "Nevertheless death reigned from Adam until Moses, even over those whose sins weren’t like Adam’s disobedience, who is a foreshadowing of him who was to come."
+    },
+    {
+     "chapter": 5,
+     "verse": 15,
+     "text": "But the free gift isn’t like the trespass. For if by the trespass of the one the many died, much more did the grace of God, and the gift by the grace of the one man, Jesus Christ, abound to the many."
+    },
+    {
+     "chapter": 5,
+     "verse": 16,
+     "text": "The gift is not as through one who sinned: for the judgment came by one to condemnation, but the free gift came of many trespasses to justification."
+    },
+    {
+     "chapter": 5,
+     "verse": 17,
+     "text": "For if by the trespass of the one, death reigned through the one; so much more will those who receive the abundance of grace and of the gift of righteousness reign in life through the one, Jesus Christ."
+    },
+    {
+     "chapter": 5,
+     "verse": 18,
+     "text": "So then as through one trespass, all men were condemned; even so through one act of righteousness, all men were justified to life."
+    },
+    {
+     "chapter": 5,
+     "verse": 19,
+     "text": "For as through the one man’s disobedience many were made sinners, even so through the obedience of the one, many will be made righteous."
+    },
+    {
+     "chapter": 5,
+     "verse": 20,
+     "text": "The law came in besides, that the trespass might abound; but where sin abounded, grace abounded more exceedingly;"
+    },
+    {
+     "chapter": 5,
+     "verse": 21,
+     "text": "that as sin reigned in death, even so grace might reign through righteousness to eternal life through Jesus Christ our Lord."
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Life in the Spirit",
+   "reference": "Romans 8:1-17",
+   "book_index": 45,
+   "chapter": 8,
+   "verse_start": 1,
+   "chapter_end": 8,
+   "verse_end": 17,
+   "verses": [
+    {
+     "chapter": 8,
+     "verse": 1,
+     "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+    },
+    {
+     "chapter": 8,
+     "verse": 2,
+     "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death."
+    },
+    {
+     "chapter": 8,
+     "verse": 3,
+     "text": "For what the law couldn’t do, in that it was weak through the flesh, God did, sending his own Son in the likeness of sinful flesh and for sin, he condemned sin in the flesh;"
+    },
+    {
+     "chapter": 8,
+     "verse": 4,
+     "text": "that the ordinance of the law might be fulfilled in us, who walk not after the flesh, but after the Spirit."
+    },
+    {
+     "chapter": 8,
+     "verse": 5,
+     "text": "For those who live according to the flesh set their minds on the things of the flesh, but those who live according to the Spirit, the things of the Spirit."
+    },
+    {
+     "chapter": 8,
+     "verse": 6,
+     "text": "For the mind of the flesh is death, but the mind of the Spirit is life and peace;"
+    },
+    {
+     "chapter": 8,
+     "verse": 7,
+     "text": "because the mind of the flesh is hostile towards God; for it is not subject to God’s law, neither indeed can it be."
+    },
+    {
+     "chapter": 8,
+     "verse": 8,
+     "text": "Those who are in the flesh can’t please God."
+    },
+    {
+     "chapter": 8,
+     "verse": 9,
+     "text": "But you are not in the flesh but in the Spirit, if it is so that the Spirit of God dwells in you. But if any man doesn’t have the Spirit of Christ, he is not his."
+    },
+    {
+     "chapter": 8,
+     "verse": 10,
+     "text": "If Christ is in you, the body is dead because of sin, but the spirit is alive because of righteousness."
+    },
+    {
+     "chapter": 8,
+     "verse": 11,
+     "text": "But if the Spirit of him who raised up Jesus from the dead dwells in you, he who raised up Christ Jesus from the dead will also give life to your mortal bodies through his Spirit who dwells in you."
+    },
+    {
+     "chapter": 8,
+     "verse": 12,
+     "text": "So then, brothers, we are debtors, not to the flesh, to live after the flesh."
+    },
+    {
+     "chapter": 8,
+     "verse": 13,
+     "text": "For if you live after the flesh, you must die; but if by the Spirit you put to death the deeds of the body, you will live."
+    },
+    {
+     "chapter": 8,
+     "verse": 14,
+     "text": "For as many as are led by the Spirit of God, these are children of God."
+    },
+    {
+     "chapter": 8,
+     "verse": 15,
+     "text": "For you didn’t receive the spirit of bondage again to fear, but you received the Spirit of adoption, by whom we cry, “Abba! Father!”"
+    },
+    {
+     "chapter": 8,
+     "verse": 16,
+     "text": "The Spirit himself testifies with our spirit that we are children of God;"
+    },
+    {
+     "chapter": 8,
+     "verse": 17,
+     "text": "and if children, then heirs; heirs of God, and joint heirs with Christ; if indeed we suffer with him, that we may also be glorified with him."
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Future Glory",
+   "reference": "Romans 8:18-39",
+   "book_index": 45,
+   "chapter": 8,
+   "verse_start": 18,
+   "chapter_end": 8,
+   "verse_end": 39,
+   "verses": [
+    {
+     "chapter": 8,
+     "verse": 18,
+     "text": "For I consider that the sufferings of this present time are not worthy to be compared with the glory which will be revealed toward us."
+    },
+    {
+     "chapter": 8,
+     "verse": 19,
+     "text": "For the creation waits with eager expectation for the children of God to be revealed."
+    },
+    {
+     "chapter": 8,
+     "verse": 20,
+     "text": "For the creation was subjected to vanity, not of its own will, but because of him who subjected it, in hope"
+    },
+    {
+     "chapter": 8,
+     "verse": 21,
+     "text": "that the creation itself also will be delivered from the bondage of decay into the liberty of the glory of the children of God."
+    },
+    {
+     "chapter": 8,
+     "verse": 22,
+     "text": "For we know that the whole creation groans and travails in pain together until now."
+    },
+    {
+     "chapter": 8,
+     "verse": 23,
+     "text": "Not only so, but ourselves also, who have the first fruits of the Spirit, even we ourselves groan within ourselves, waiting for adoption, the redemption of our body."
+    },
+    {
+     "chapter": 8,
+     "verse": 24,
+     "text": "For we were saved in hope, but hope that is seen is not hope. For who hopes for that which he sees?"
+    },
+    {
+     "chapter": 8,
+     "verse": 25,
+     "text": "But if we hope for that which we don’t see, we wait for it with patience."
+    },
+    {
+     "chapter": 8,
+     "verse": 26,
+     "text": "In the same way, the Spirit also helps our weaknesses, for we don’t know how to pray as we ought. But the Spirit himself makes intercession for us with groanings which can’t be uttered."
+    },
+    {
+     "chapter": 8,
+     "verse": 27,
+     "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
+    },
+    {
+     "chapter": 8,
+     "verse": 28,
+     "text": "We know that all things work together for good for those who love God, to those who are called according to his purpose."
+    },
+    {
+     "chapter": 8,
+     "verse": 29,
+     "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers."
+    },
+    {
+     "chapter": 8,
+     "verse": 30,
+     "text": "Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified."
+    },
+    {
+     "chapter": 8,
+     "verse": 31,
+     "text": "What then shall we say about these things? If God is for us, who can be against us?"
+    },
+    {
+     "chapter": 8,
+     "verse": 32,
+     "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+    },
+    {
+     "chapter": 8,
+     "verse": 33,
+     "text": "Who could bring a charge against God’s chosen ones? It is God who justifies."
+    },
+    {
+     "chapter": 8,
+     "verse": 34,
+     "text": "Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us."
+    },
+    {
+     "chapter": 8,
+     "verse": 35,
+     "text": "Who shall separate us from the love of Christ? Could oppression, or anguish, or persecution, or famine, or nakedness, or peril, or sword?"
+    },
+    {
+     "chapter": 8,
+     "verse": 36,
+     "text": "Even as it is written, “For your sake we are killed all day long. We were accounted as sheep for the slaughter.”"
+    },
+    {
+     "chapter": 8,
+     "verse": 37,
+     "text": "No, in all these things, we are more than conquerors through him who loved us."
+    },
+    {
+     "chapter": 8,
+     "verse": 38,
+     "text": "For I am persuaded that neither death, nor life, nor angels, nor principalities, nor things present, nor things to come, nor powers,"
+    },
+    {
+     "chapter": 8,
+     "verse": 39,
+     "text": "nor height, nor depth, nor any other created thing, will be able to separate us from God’s love, which is in Christ Jesus our Lord."
+    }
+   ]
+  }
+ ]
+}
