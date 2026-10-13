@@ -61,6 +61,14 @@ Rules:
 - No trailing newline after the question.
 - Source ids are assigned by the app, never by the model.
 
+**Chat template.** [fixtures/gemma4_chat_template_golden.json](fixtures/gemma4_chat_template_golden.json) holds the
+official Gemma 4 template's rendering (`enable_thinking=False`) of the golden prompts. The app's Swift fallback
+template (`ChatTemplate.gemma4`) must reproduce it byte-for-byte; regenerate the fixture if the model revision changes.
+
+**Thought channel.** Base Gemma 4 can open `<|channel>thought … <channel|>` even with thinking disabled. Engines strip
+these blocks from generated text before display, storage, citation validation or memory-JSON parsing
+(`ThoughtChannelFilter` in Swift, `bible_ft.thinking` in evaluation).
+
 Historical user turns in "recent messages" are stored and replayed as the raw question only (no context block),
 historical assistant turns as the final validated answer text.
 

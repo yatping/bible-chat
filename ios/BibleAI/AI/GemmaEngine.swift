@@ -116,6 +116,7 @@ actor GemmaEngine: LLMEngine {
         defer { llama_sampler_free(sampler) }
 
         var decoder = UTF8StreamDecoder()
+        var thoughts = ThoughtChannelFilter()
         var text = ""
         var pieceBuffer = [CChar](repeating: 0, count: 256)
         for _ in 0..<maxNewTokens {
@@ -123,12 +124,14 @@ actor GemmaEngine: LLMEngine {
             var token = llama_sampler_sample(sampler, context, -1) // also accepts the token
             if llama_vocab_is_eog(vocab, token) { break }
 
-            var length = llama_token_to_piece(vocab, token, &pieceBuffer, Int32(pieceBuffer.count), 0, false)
+            var length = llama_token_to_piece(vocab, token, &pieceBuffer, Int32(pieceBuffer.count), 0, true)
             if length < 0 {
                 pieceBuffer = [CChar](repeating: 0, count: Int(-length))
-                length = llama_token_to_piece(vocab, token, &pieceBuffer, Int32(pieceBuffer.count), 0, false)
+                length = llama_token_to_piece(vocab, token, &pieceBuffer, Int32(pieceBuffer.count), 0, true)
             }
-            let piece = decoder.append(pieceBuffer.prefix(Int(max(0, length))).map { UInt8(bitPattern: $0) })
+            // Special tokens are rendered (last argument `true`) so thought-channel markers reach the filter.
+            let decoded = decoder.append(pieceBuffer.prefix(Int(max(0, length))).map { UInt8(bitPattern: $0) })
+            let piece = thoughts.feed(decoded)
             if !piece.isEmpty {
                 text += piece
                 if ChatTemplate.stopStrings.contains(where: text.contains) { break }
@@ -138,7 +141,7 @@ actor GemmaEngine: LLMEngine {
             let rc = llama_decode(context, llama_batch_get_one(&token, 1))
             guard rc == 0 else { throw LLMEngineError.decodeFailed(rc) }
         }
-        let rest = decoder.finish()
+        let rest = thoughts.feed(decoder.finish()) + thoughts.finish()
         if !rest.isEmpty { emit(rest) }
     }
 

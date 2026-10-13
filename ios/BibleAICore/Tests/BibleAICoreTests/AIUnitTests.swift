@@ -20,6 +20,26 @@ struct ChatTemplateTests {
         #expect(ChatTemplate.gemma4([.user("Q")], addGenerationPrompt: false) == "<|turn>user\nQ<turn|>\n")
     }
 
+    /// Rendered by the official template via `transformers` (see the fixture's `generated_by`), so the on-device
+    /// fallback is byte-identical to what the model was fine-tuned on.
+    @Test func matchesOfficialTemplateGolden() throws {
+        struct Golden: Decodable {
+            struct Case: Decodable {
+                let name: String
+                let messages: [ChatMessage]
+                let add_generation_prompt: Bool
+                let rendered: String
+            }
+            let cases: [Case]
+        }
+        let golden = try Repo.sharedJSON("gemma4_chat_template_golden.json", as: Golden.self)
+        #expect(golden.cases.count >= 5)
+        for c in golden.cases {
+            let text = ChatTemplate.gemma4(c.messages, includeBOS: true, addGenerationPrompt: c.add_generation_prompt)
+            #expect(text == c.rendered, "case \(c.name)")
+        }
+    }
+
     @Test func consecutiveAssistantMessagesShareATurn() {
         let text = ChatTemplate.gemma4([.user("Q"), .assistant("A"), .assistant("B")], addGenerationPrompt: false)
         #expect(text == "<|turn>user\nQ<turn|>\n<|turn>model\nAB<turn|>\n")
@@ -164,5 +184,32 @@ struct UTF8StreamDecoderTests {
         var decoder = UTF8StreamDecoder()
         #expect(decoder.append([0x61, 0xE2, 0x80]) == "a")
         #expect(decoder.finish() == "\u{FFFD}")
+    }
+}
+
+@Suite("Thought channel filter")
+struct ThoughtChannelFilterTests {
+    @Test func stripsThoughtBlockFromWholeText() {
+        #expect(ThoughtChannelFilter.strip("<|channel>thought\nPlan…<channel|>Forgive freely [S1].") == "Forgive freely [S1].")
+        #expect(ThoughtChannelFilter.strip("No thinking here.") == "No thinking here.")
+    }
+
+    @Test func handlesMarkersSplitAcrossPieces() {
+        var filter = ThoughtChannelFilter()
+        let pieces = ["<|cha", "nnel>thought\n", "secret plan", "<chan", "nel|>An", "swer [S1]", " with a < sign"]
+        let visible = pieces.map { filter.feed($0) }.joined() + filter.finish()
+        #expect(visible == "Answer [S1] with a < sign")
+    }
+
+    @Test func dropsUnterminatedThought() {
+        var filter = ThoughtChannelFilter()
+        #expect(filter.feed("Hi <|channel>thought\nstill thinking") == "Hi ")
+        #expect(filter.finish() == "")
+    }
+
+    @Test func holdsBackOnlyPossibleMarkerPrefixes() {
+        var filter = ThoughtChannelFilter()
+        #expect(filter.feed("a <|") == "a ")
+        #expect(filter.feed("x") == "<|x")
     }
 }
