@@ -1,0 +1,2 @@
+# Tests and hash-embedder builds use only the Python standard library plus pytest.
+pytest>=8

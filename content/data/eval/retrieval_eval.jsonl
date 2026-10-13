@@ -1,0 +1,66 @@
+{"question": "What does John 3:16 say?", "relevant": ["John 3:16"], "kind": "reference"}
+{"question": "Explain Matthew 18:22", "relevant": ["Matthew 18:21-35"], "kind": "reference"}
+{"question": "Summarise 1 Cor 13:4-7", "relevant": ["1 Corinthians 13:4-7"], "kind": "reference"}
+{"question": "What is Psalm 23 about?", "relevant": ["Psalm 23:1-6"], "kind": "reference"}
+{"question": "What is the meaning of Romans 8:28?", "relevant": ["Romans 8:28"], "kind": "reference"}
+{"question": "Read Gen 1:1-3 to me", "relevant": ["Genesis 1:1-3"], "kind": "reference"}
+{"question": "What does Isaiah 53:5 mean?", "relevant": ["Isaiah 53:5"], "kind": "reference"}
+{"question": "Explain Eph 2:8-9", "relevant": ["Ephesians 2:8-9"], "kind": "reference"}
+{"question": "What is in Mt 5:3-12?", "relevant": ["Matthew 5:3-12"], "kind": "reference"}
+{"question": "What is the context of Phil 4:13?", "relevant": ["Philippians 4:13"], "kind": "reference"}
+{"question": "What does Jer 29:11 promise?", "relevant": ["Jeremiah 29:11"], "kind": "reference"}
+{"question": "What does Rev 21:4 promise?", "relevant": ["Revelation 21:4"], "kind": "reference"}
+{"question": "How does Heb 11:1 define faith?", "relevant": ["Hebrews 11:1"], "kind": "reference"}
+{"question": "What do Prov 3:5-6 teach?", "relevant": ["Proverbs 3:5-6"], "kind": "reference"}
+{"question": "What happens in Acts 2?", "relevant": ["Acts 2:1-47"], "kind": "reference"}
+{"question": "Explain John 1:1-14", "relevant": ["John 1:1-14"], "kind": "reference"}
+{"question": "What is 2 Tim 3:16 about?", "relevant": ["2 Timothy 3:16"], "kind": "reference"}
+{"question": "Compare John 3:16-4:2", "relevant": ["John 3:16-4:2"], "kind": "reference"}
+{"question": "seventy times seven", "relevant": ["Matthew 18:21-35"], "kind": "keyword"}
+{"question": "the fruit of the Spirit is love, joy, peace", "relevant": ["Galatians 5:22-23"], "kind": "keyword"}
+{"question": "Our Father in heaven, may your name be kept holy", "relevant": ["Matthew 6:9-13", "Luke 11:2-4"], "kind": "keyword"}
+{"question": "In the beginning God created the heavens and the earth", "relevant": ["Genesis 1:1"], "kind": "keyword"}
+{"question": "The LORD is my shepherd", "relevant": ["Psalm 23:1"], "kind": "keyword"}
+{"question": "love is patient and is kind", "relevant": ["1 Corinthians 13:4"], "kind": "keyword"}
+{"question": "Goliath the Philistine giant", "relevant": ["1 Samuel 17:1-58"], "kind": "keyword"}
+{"question": "Ten Commandments", "relevant": ["Exodus 20:1-17", "Deuteronomy 5:6-21", "Exodus 34:28", "Deuteronomy 4:13", "Deuteronomy 10:4"], "kind": "keyword"}
+{"question": "Jonah swallowed by a huge fish", "relevant": ["Jonah 1:17-2:10"], "kind": "keyword"}
+{"question": "Daniel thrown into the den of lions", "relevant": ["Daniel 6:10-24"], "kind": "keyword"}
+{"question": "Shadrach, Meshach, and Abednego in the fiery furnace", "relevant": ["Daniel 3:1-30"], "kind": "keyword"}
+{"question": "Zacchaeus climbed a sycamore tree", "relevant": ["Luke 19:1-10"], "kind": "keyword"}
+{"question": "the whole armor of God", "relevant": ["Ephesians 6:10-20"], "kind": "keyword"}
+{"question": "faith, hope, and love; the greatest of these is love", "relevant": ["1 Corinthians 13:13"], "kind": "keyword"}
+{"question": "the valley of dry bones", "relevant": ["Ezekiel 37:1-14"], "kind": "keyword"}
+{"question": "Lazarus, come out!", "relevant": ["John 11:38-44"], "kind": "keyword"}
+{"question": "water turned into wine at the wedding in Cana", "relevant": ["John 2:1-11"], "kind": "keyword"}
+{"question": "Nicodemus and being born anew", "relevant": ["John 3:1-21"], "kind": "keyword"}
+{"question": "the bush burned with fire but was not consumed", "relevant": ["Exodus 3:1-6"], "kind": "keyword"}
+{"question": "Noah built the ship and the flood came", "relevant": ["Genesis 6:9-22", "Genesis 7:1-24"], "kind": "keyword"}
+{"question": "A time to be born and a time to die", "relevant": ["Ecclesiastes 3:1-8"], "kind": "keyword"}
+{"question": "Mary Magdalene at the empty tomb", "relevant": ["John 20:1-18", "Matthew 28:1-10", "Mark 16:1-11", "Luke 24:1-12"], "kind": "keyword"}
+{"question": "Why did Jesus tell Peter to forgive seventy times seven?", "relevant": ["Matthew 18:21-35"], "kind": "semantic"}
+{"question": "How many times should I forgive someone who keeps wronging me?", "relevant": ["Matthew 18:21-35", "Luke 17:3-4"], "kind": "semantic"}
+{"question": "What did God make on the first day of creation?", "relevant": ["Genesis 1:1-5"], "kind": "semantic"}
+{"question": "Who betrayed Jesus for money?", "relevant": ["Matthew 26:14-16", "Matthew 27:3-10", "Mark 14:10-11", "Luke 22:3-6"], "kind": "semantic"}
+{"question": "What does the Bible say about worry and anxiety?", "relevant": ["Matthew 6:25-34", "Philippians 4:6-7", "1 Peter 5:7"], "kind": "semantic"}
+{"question": "How should husbands treat their wives?", "relevant": ["Ephesians 5:25-33", "Colossians 3:19", "1 Peter 3:7"], "kind": "semantic"}
+{"question": "The story of a young man who wasted his inheritance and was welcomed home by his father", "relevant": ["Luke 15:11-32"], "kind": "semantic"}
+{"question": "Who claimed not to know Jesus three times before the rooster crowed?", "relevant": ["Matthew 26:69-75", "Mark 14:66-72", "Luke 22:54-62", "John 18:15-27"], "kind": "semantic"}
+{"question": "What happened when the disciples received the Holy Spirit at Pentecost?", "relevant": ["Acts 2:1-13"], "kind": "semantic"}
+{"question": "Why should Christians not judge other people?", "relevant": ["Matthew 7:1-5", "Luke 6:37-42", "Romans 14:10-13"], "kind": "semantic"}
+{"question": "Which king saw a hand writing on the wall during a feast?", "relevant": ["Daniel 5:1-31"], "kind": "semantic"}
+{"question": "What did Jesus say is the most important commandment?", "relevant": ["Matthew 22:34-40", "Mark 12:28-34"], "kind": "semantic"}
+{"question": "How did Jesus feed thousands of people with a few loaves and fish?", "relevant": ["Matthew 14:13-21", "Mark 6:30-44", "Luke 9:10-17", "John 6:1-14"], "kind": "semantic"}
+{"question": "Which Moabite widow stayed loyal to her mother-in-law Naomi?", "relevant": ["Ruth 1:1-22"], "kind": "semantic"}
+{"question": "Which prophet was carried up to heaven in a whirlwind?", "relevant": ["2 Kings 2:1-14"], "kind": "semantic"}
+{"question": "Will God take away all sorrow and death at the end?", "relevant": ["Revelation 21:1-5"], "kind": "semantic"}
+{"question": "How did the devil tempt Jesus in the wilderness?", "relevant": ["Matthew 4:1-11", "Luke 4:1-13", "Mark 1:12-13"], "kind": "semantic"}
+{"question": "What did Jesus teach about his followers being salt and light?", "relevant": ["Matthew 5:13-16"], "kind": "semantic"}
+{"question": "Why did God decide to send the flood?", "relevant": ["Genesis 6:5-13"], "kind": "semantic"}
+{"question": "Which son was Abraham told to offer as a sacrifice on a mountain?", "relevant": ["Genesis 22:1-19"], "kind": "semantic"}
+{"question": "Are we saved by good works or by grace through faith?", "relevant": ["Ephesians 2:8-10", "Romans 3:21-28", "Galatians 2:16", "Romans 4:1-5"], "kind": "semantic"}
+{"question": "How was Saul converted on the road to Damascus?", "relevant": ["Acts 9:1-19", "Acts 22:6-16", "Acts 26:12-18"], "kind": "semantic"}
+{"question": "Who led the rebuilding of Jerusalem's wall after the exile?", "relevant": ["Nehemiah 2:11-20", "Nehemiah 6:15-16"], "kind": "semantic"}
+{"question": "Will the dead really be raised, according to Paul?", "relevant": ["1 Corinthians 15:12-58"], "kind": "semantic"}
+{"question": "How did King David sin with Bathsheba and how was he confronted?", "relevant": ["2 Samuel 11:1-27", "2 Samuel 12:1-15"], "kind": "semantic"}
+{"question": "Blessings Jesus pronounced on the poor, the mourners and the meek", "relevant": ["Matthew 5:3-12", "Luke 6:20-23"], "kind": "semantic"}

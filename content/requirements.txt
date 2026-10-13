@@ -1,0 +1,5 @@
+# Build-machine only (real EmbeddingGemma embeddings). Not needed for tests or `--embedder hash`.
+# EmbeddingGemma needs transformers >= 4.56; access to the gated HF repo google/embeddinggemma-300m.
+sentence-transformers>=5.1
+transformers>=4.56
+torch>=2.4
